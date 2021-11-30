@@ -1,0 +1,11 @@
+Development Plan
+================
+Author: afzx.ahmad
+
+Quiz App
+    - Design UI + Prototype
+    - Develop Web
+
+Branch Name:
+    - designing-ui -> Design UI + Prototype
+    - developing-web -> Develop Web

@@ -1,16 +1,16 @@
 @font-face {
-    font-family: "Comic Sans MS";
+    font-family: "Outfit", sans-serif;
     font-display: fallback;
     font-weight: normal;
     font-style: normal;
-    src: url("../fonts/comic_sans/comic.ttf") format("truetype");
+    src: url("../fonts/Outfit/Outfit.ttf") format("truetype");
 }
 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Comic Sans MS";
+    font-family: "Outfit", sans-serif;
 }
 
 body {
