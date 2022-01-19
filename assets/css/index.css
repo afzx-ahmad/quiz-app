@@ -74,14 +74,19 @@ body {
     width: 100%;
 }
 
-.optionContainer a {
+.optionWrap label {
     font-size: 22px;
-    padding-bottom: 15px;
+    padding-left: 20px;
     text-decoration: none;
     color: black;
+    display: inline;
 }
 
-.optionContainer a:nth-last-child(1) {
+.optionContainer .optionWrap {
+    padding-bottom: 15px;
+}
+
+.optionContainer .optionWrap:nth-last-child(1) {
     padding-bottom: 0;
 }
 

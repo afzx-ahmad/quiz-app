@@ -202,21 +202,34 @@ window.addEventListener('load', (event) => {
         var optionsTag = [];
         var abcd = ['A', 'B', 'C', 'D'];
         
+
         var optionTag = document.createElement("div");
         optionTag.className = "optionContainer";
         
         var add
         
         for(optionPick in optionsAnswer){
-            var aTag = document.createElement("a");
+            var optionRadioButton = document.createElement("input")
+            optionRadioButton.setAttribute("type", "radio");
+            optionRadioButton.setAttribute("name", "optionAnswer");
+            var optionId = abcd[optionPick];
+            var optionKey = optionsAnswer[optionPick];
+            optionRadioButton.setAttribute("value", optionKey);
+            optionRadioButton.setAttribute("id", optionId);
 
-            var optionsContent = document.createTextNode(abcd[optionPick] + ". " + questionAnswer[questions[questionNumber]].options[optionsAnswer[optionPick]]);
-            
-            aTag.appendChild(optionsContent);
-            aTag.className = abcd[optionPick] + "-" + optionsAnswer[optionPick];
-            aTag.setAttribute("href", "#");
+            var optionLabel = document.createElement("label")
+            optionLabel.setAttribute("for", optionId);
 
-            optionsTag.push(aTag);
+            var optionContent = document.createTextNode(abcd[optionPick] + ". " + questionAnswer[questions[questionNumber]].options[optionsAnswer[optionPick]]);
+
+            optionLabel.appendChild(optionContent);
+
+            var optionWrap = document.createElement("div");
+            optionWrap.className = "optionWrap";
+            optionWrap.appendChild(optionRadioButton);
+            optionWrap.appendChild(optionLabel);
+
+            optionsTag.push(optionWrap);
         }
 
         for(createOption in optionsTag){
