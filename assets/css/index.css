@@ -1,18 +1,171 @@
 @font-face {
-    font-family: "Comic Sans MS";
+    font-family: "Outfit", sans-serif;
     font-display: fallback;
     font-weight: normal;
     font-style: normal;
-    src: url("../fonts/comic_sans/comic.ttf") format("truetype");
+    src: url("../fonts/Outfit/Outfit.ttf") format("truetype");
 }
 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Comic Sans MS";
+    font-family: "Outfit", sans-serif;
 }
 
 body {
-    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(-10deg, #1FA2FF, #A9E3FF);
+}
+
+.quiz-container {
+    background-color: white;
+    width: 750px;
+    height: 450px;
+    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    border-bottom: 3px solid black;
+}
+
+.quiz-header h2 {
+    font-size: 28px;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.quiz-header .question {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.quiz-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 68%;
+}
+
+.quiz-body h1 {
+    font-size: 42px;
+    font-weight: normal;
+    width: 50%;
+    text-align: center;
+}
+
+.quiz-body .optionContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 60px;
+    height: 100%;
+    width: 100%;
+}
+
+.optionWrap label {
+    font-size: 22px;
+    padding-left: 20px;
+    text-decoration: none;
+    color: black;
+    display: inline;
+}
+
+.optionContainer .optionWrap {
+    padding-bottom: 15px;
+}
+
+.optionContainer .optionWrap:nth-last-child(1) {
+    padding-bottom: 0;
+}
+
+.quiz-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12%;
+    background-color: #1FA2FF;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.start-button {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.start-button:hover {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.controller {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: right;
+}
+
+.controller button {
+    padding: 0 50px ;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    background-color: #1FD9FF;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.controller button:hover {
+    font-size: 17px;
+    padding: 0 55px;
+}
+
+.controller .curent-number {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 15px;
+    color: white;
+    opacity: 0.6;
+}
+
+.copyright p {
+    text-shadow: 0 2px rgba(0, 0, 0, 0.425) ;
+}
+
+.copyright p a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Media Query for Small Device */
+@media only screen and (min-width: 600px){
+    
 }
