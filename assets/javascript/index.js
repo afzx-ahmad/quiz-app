@@ -17,7 +17,7 @@ window.addEventListener('load', (event) => {
                 o2: "This is an option 3",
                 o3: "This is an option 4"
             },
-            rightAnswer: "o3"
+            rightAnswer: "o0"
         },
         q1: {
             question: "This is some a question 1 ?",
@@ -27,7 +27,7 @@ window.addEventListener('load', (event) => {
                 o2: "This is an option 3",
                 o3: "This is an option 4"
             },
-            rightAnswer: "o2"
+            rightAnswer: "o1"
         },
         q2: {
             question: "This is some a question 2 ?",
@@ -37,7 +37,7 @@ window.addEventListener('load', (event) => {
                 o2: "This is an option 3",
                 o3: "This is an option 4"
             },
-            rightAnswer: "o1"
+            rightAnswer: "o2"
         },
         q3: {
             question: "This is some a question 3 ?",
@@ -47,7 +47,7 @@ window.addEventListener('load', (event) => {
                 o2: "This is an option 3",
                 o3: "This is an option 4"
             },
-            rightAnswer: "o4"
+            rightAnswer: "o3"
         },
         q4: {
             question: "This is some a question 4 ?",
@@ -60,6 +60,12 @@ window.addEventListener('load', (event) => {
             rightAnswer: "o0"
         }
     }
+
+    var userAnswer = {};
+    var userScore = {
+        "score": 0,
+        "totalScore": 0
+    };
 
     let numberAllQuestion = Object.keys(questionAnswer).length;
     
@@ -102,6 +108,7 @@ window.addEventListener('load', (event) => {
         let submitButtonTag = document.createElement("button");
         let submitButtonContent = document.createTextNode("SUBMIT");
         submitButtonTag.setAttribute("type", "submit");
+        submitButtonTag.className = "submitAnswer";
         submitButtonTag.addEventListener("click", nextQuestion);
        
         submitButtonTag.appendChild(submitButtonContent);
@@ -119,21 +126,49 @@ window.addEventListener('load', (event) => {
     }
     
     function nextQuestion(){
-        chooseAnswer();
-        checkAnswer();
-        if(curentNumber < numberAllQuestion){
-            curentNumber += 1;
-            startQuiz();
+        var radioButtonOption = document.querySelector("input[name=optionAnswer]:checked");
+        
+        if(!radioButtonOption){
+            alert("Please Choose Your Answer First");
         }else{
-            alert("Sudah Habis");
+            chooseAnswer(); 
+            checkAnswer();
+            
+            if(curentNumber < numberAllQuestion){
+                curentNumber += 1;
+                startQuiz();
+            }else{
+                userScore.totalScore = (userScore.score * 100) / questions.length;
+                alert("Right Answer: " + userScore.score + " | Wrong Answer: " + (questions.length - userScore.score));
+                alert("Your Score: " + userScore.totalScore);
+            }
         }
     }
 
+    
     function chooseAnswer(){
-        alert("choose answer");
+        var radioButtonOption = document.querySelector("input[name=optionAnswer]:checked");
+        
+        userAnswer[curentNumber] = {
+            "questionNumber": curentNumber,
+            "questionNumberKey": questions[curentNumber - 1],
+            "userChooseOption": radioButtonOption.id,
+            "userChooseKey": radioButtonOption.value
+        };
     }
+
     function checkAnswer(){
-        alert("check answer");
+        userScore[curentNumber] = {
+            "questionNumberKey": questions[curentNumber - 1],
+            "userAnswer": userAnswer[curentNumber].userChooseKey,
+            "rightAnswer": questionAnswer[questions[curentNumber - 1]].rightAnswer
+        };
+        
+        if(userScore[curentNumber].userAnswer == userScore[curentNumber].rightAnswer){
+            userScore.score += 1;
+        }
+
+        console.log(userScore.score);
     }
 
     function randomQuestion(){
@@ -157,8 +192,8 @@ window.addEventListener('load', (event) => {
             randomKeys.push(keys[sortIndex[index]]);
         }
         
-        //console.log(keys);
-        //console.log(sortIndex);
+        console.log(keys);
+        //console.log(sortIndexi);
         //console.log(randomKeys);
         
         return randomKeys;
@@ -201,12 +236,9 @@ window.addEventListener('load', (event) => {
     function showOptionsAnswer(optionsAnswer, questions, questionNumber){
         var optionsTag = [];
         var abcd = ['A', 'B', 'C', 'D'];
-        
 
         var optionTag = document.createElement("div");
         optionTag.className = "optionContainer";
-        
-        var add
         
         for(optionPick in optionsAnswer){
             var optionRadioButton = document.createElement("input")
